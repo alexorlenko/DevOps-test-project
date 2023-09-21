@@ -8,6 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                git 'https://github.com/alexorlenko/DevOps-test-project/tree/main/oms'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
