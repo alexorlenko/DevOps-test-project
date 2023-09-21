@@ -1,11 +1,13 @@
 pipeline {
     agent any
+    tools {
+        maven 'Maven'
+    }
 
     stages {
         stage('Build') {
             steps {
                 echo 'Building..'
-                tool name: 'Maven', type: 'hudson.tasks.Maven'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
