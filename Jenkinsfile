@@ -20,9 +20,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                echo "${WORKSPACE}"
-                sh "ls -la ${WORKSPACE}"
-                //sh "aws s3 cp ${WORKSPACE}/ s3://myflaskappbucket1"
+                sh "aws s3 cp ${WORKSPACE}/target/OMS.war s3://my-bucket-with-jenkins"
             }
         }
     }
