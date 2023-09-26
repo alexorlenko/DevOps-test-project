@@ -20,7 +20,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh "aws s3 cp ${WORKSPACE}/target/OMS.war s3://my-bucket-with-jenkins"
+                sh "aws s3 cp ${WORKSPACE}/target/OMS_${BUILD_NUMBER}.war s3://my-bucket-with-jenkins"
             }
         }
     }
