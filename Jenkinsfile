@@ -21,6 +21,7 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 echo "${WORKSPACE}"
+                sh "ls -la ${WORKSPACE}"
                 //sh "aws s3 cp ${WORKSPACE}/ s3://myflaskappbucket1"
             }
         }
