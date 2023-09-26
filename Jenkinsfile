@@ -20,6 +20,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                echo ${WORKSPACE}
+                //sh "aws s3 cp ${WORKSPACE}/ s3://myflaskappbucket1"
             }
         }
     }
