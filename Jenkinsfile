@@ -39,7 +39,7 @@ pipeline {
                     def localWarPath = "${WORKSPACE}/target/${warFileName}"
         
                     // Шлях на віддаленій машині, куди ви хочете розмістити WAR-файл
-                    def remoteDirectory = '/home/ubuntu'
+                    def remoteDirectory = '/var/lib/tomcat9/webapps'
         
                     // Копіювання WAR-файлу через SSH
                     sshPublisher(
