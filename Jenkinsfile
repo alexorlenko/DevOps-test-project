@@ -21,10 +21,10 @@ pipeline {
             steps {
                 script {
                     echo 'Deploying to s3....'
-                    def gitCommitHash = checkout(scm).GIT_COMMIT
-                    def fileName = "OMS_${gitCommitHash}.war"
-                    sh "mv ${WORKSPACE}/target/OMS.war ${WORKSPACE}/target/${fileName}"
-                    sh "aws s3 cp ${WORKSPACE}/target/${fileName} s3://my-bucket-with-jenkins/${fileName}"
+                    //def gitCommitHash = checkout(scm).GIT_COMMIT
+                    //def fileName = "OMS_${gitCommitHash}.war"
+                    //sh "mv ${WORKSPACE}/target/OMS.war ${WORKSPACE}/target/${fileName}"
+                    //sh "aws s3 cp ${WORKSPACE}/target/${fileName} s3://my-bucket-with-jenkins/${fileName}"
                 }
             }
         }
@@ -39,7 +39,7 @@ pipeline {
                     def localWarPath = "${WORKSPACE}/target/${warFileName}"
         
                     // Шлях на віддаленій машині, куди ви хочете розмістити WAR-файл
-                    def remoteDirectory = '/var/lib/tomcat9/webapps'
+                    def remoteDirectory = '/home/ubuntu'
         
                     // Копіювання WAR-файлу через SSH
                     sshPublisher(
