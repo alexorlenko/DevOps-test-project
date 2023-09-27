@@ -47,7 +47,7 @@ pipeline {
                         failOnError: true,
                         publishers: [
                             sshPublisherDesc(
-                                configName: 'app_server',
+                                configName: 'awsinstance',
                                 transfers: [
                                     sshTransfer(
                                         sourceFiles: localWarPath,
