@@ -19,11 +19,13 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
-                def gitCommitHash = checkout(scm).GIT_COMMIT
-                def fileName = "OMS_${gitCommitHash}.war"
-                sh "mv ${WORKSPACE}/target/OMS.war ${WORKSPACE}/target/${fileName}"
-                sh "aws s3 cp ${WORKSPACE}/target/${fileName} s3://my-bucket-with-jenkins/${fileName}"
+                script {
+                    echo 'Deploying....'
+                    def gitCommitHash = checkout(scm).GIT_COMMIT
+                    def fileName = "OMS_${gitCommitHash}.war"
+                    sh "mv ${WORKSPACE}/target/OMS.war ${WORKSPACE}/target/${fileName}"
+                    sh "aws s3 cp ${WORKSPACE}/target/${fileName} s3://my-bucket-with-jenkins/${fileName}"
+                }
             }
         }
     }
