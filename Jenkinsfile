@@ -57,16 +57,6 @@ pipeline {
                             )
                         ]
                     )
-        
-                    // Виконати команди SSH на віддаленому сервері для розгортання та запуску
-                    sshCommand(
-                        remote: "app_server",
-                        command: [
-                            "cd /var/lib/tomcat9/webapps", // Замініть на шлях до директорії на сервері
-                            "unzip -q *.war", // Розпакувати WAR-файл
-                            "sudo systemctl restart tomcat" // Перезапустити Tomcat (замініть на вашу команду)
-                        ].join(' && ')
-                    )
                 }
             }
         }
