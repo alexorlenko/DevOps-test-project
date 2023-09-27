@@ -17,15 +17,20 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Deploy') {
+        stage('Deploy to s3') {
             steps {
                 script {
-                    echo 'Deploying....'
+                    echo 'Deploying to s3....'
                     def gitCommitHash = checkout(scm).GIT_COMMIT
                     def fileName = "OMS_${gitCommitHash}.war"
                     sh "mv ${WORKSPACE}/target/OMS.war ${WORKSPACE}/target/${fileName}"
                     sh "aws s3 cp ${WORKSPACE}/target/${fileName} s3://my-bucket-with-jenkins/${fileName}"
                 }
+            }
+        }
+        stage('Deploy to AWS instance') {
+            steps {
+                echo 'Deploying to the instance....'
             }
         }
     }
