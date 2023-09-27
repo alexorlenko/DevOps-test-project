@@ -20,8 +20,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh "mv ${WORKSPACE}/target/OMS.war ${WORKSPACE}/target/OMS_${BUILD_NUMBER}.war"
-                sh "aws s3 cp ${WORKSPACE}/target/OMS_${BUILD_NUMBER}.war s3://my-bucket-with-jenkins"
+                def gitCommitHash = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                def fileName = "OMS_${gitCommitHash}.war"
+                sh "mv ${WORKSPACE}/target/OMS.war ${WORKSPACE}/target/${fileName}"
+                sh "aws s3 cp ${WORKSPACE}/target/${fileName} s3://my-bucket-with-jenkins/${fileName}"
             }
         }
     }
