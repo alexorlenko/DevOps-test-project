@@ -36,7 +36,7 @@ pipeline {
                         continueOnError: false, failOnError: true,
                         publishers: [
                             sshPublisherDesc(
-                                configName: "app_server",
+                                configName: "awsinstance",
                                 transfers: [    
                                     sshTransfer(
                                         cleanRemote: true,
