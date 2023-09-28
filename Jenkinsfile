@@ -32,26 +32,16 @@ pipeline {
             steps {
                 echo 'Deploying to the instance....'
                 script {
-                    // Ім'я WAR-файлу, яке вам потрібно розгортати
-                    def warFileName = "OMS.war"
-        
-                    // Шлях на локальній машині до WAR-файлу
-                    def localWarPath = "${WORKSPACE}/target/${warFileName}"
-        
-                    // Шлях на віддаленій машині, куди ви хочете розмістити WAR-файл
-                    def remoteDirectory = '/var/lib/tomcat9/webapps'
-        
-                    // Копіювання WAR-файлу через SSH
                     sshPublisher(
-                        continueOnError: false,
-                        failOnError: true,
+                        continueOnError: false, failOnError: true,
                         publishers: [
                             sshPublisherDesc(
-                                configName: 'awsinstance',
-                                transfers: [
+                                configName: "app_server",
+                                transfers: [    
                                     sshTransfer(
-                                        sourceFiles: localWarPath,
-                                        remoteDirectory: remoteDirectory
+                                        cleanRemote: true,
+                                        remoteDirectory: '/var/lib/tomcat9/webapps',
+                                        sourceFiles: '**/*.war'
                                     )
                                 ]
                             )
