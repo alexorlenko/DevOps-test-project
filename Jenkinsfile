@@ -50,14 +50,6 @@ pipeline {
                             )
                         ]
                     )
-                    sshCommand(
-                        remote: "awsinstance",
-                        command: [
-                            "cd /var/lib/tomcat9/webapps", 
-                            "unzip -q *.war", 
-                            "sudo systemctl restart tomcat" 
-                        ].join(' && ')
-                    )
                 }
             }
         }
