@@ -42,6 +42,9 @@ pipeline {
                                         cleanRemote: true,
                                         remoteDirectory: '/app',
                                         sourceFiles: '**/*.war'
+                                    ),
+                                    sshTransfer(
+                                        execCommand: "cp /home/ubuntu/app/target/OMS.war /var/lib/tomcat9/webapps/"
                                     )
                                 ]
                             )
