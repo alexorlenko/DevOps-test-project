@@ -40,7 +40,7 @@ pipeline {
                                 transfers: [    
                                     sshTransfer(
                                         cleanRemote: true,
-                                        remoteDirectory: '/',
+                                        remoteDirectory: '/app',
                                         sourceFiles: '**/*.war'
                                     )
                                 ]
