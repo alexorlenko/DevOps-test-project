@@ -41,7 +41,8 @@ pipeline {
                                     sshTransfer(
                                         cleanRemote: true,
                                         remoteDirectory: '/var/lib/tomcat9/webapps',
-                                        sourceFiles: '**/*.war'
+                                        sourceFiles: '**/*.war',
+                                        includes: 'target/*.war'
                                     )
                                 ]
                             )
