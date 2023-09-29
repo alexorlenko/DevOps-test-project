@@ -20,7 +20,7 @@
 		<property name="hibernate.connection.username">db207</property>
 		<property name="hibernate.connection.password">db207</property>
  -->
-		<property name="hibernate.connection.url">jdbc:mysql://lv316oms.co1vwbmyqmsv.eu-north-1.rds.amazonaws.com:3306/lv316oms</property>
+		<property name="hibernate.connection.url">jdbc:mysql://mysql.co1vwbmyqmsv.eu-north-1.rds.amazonaws.com:3306/lv316oms</property>
 		<property name="hibernate.connection.username">mirowind</property>
 		<property name="hibernate.connection.password">miro1234</property>
  
