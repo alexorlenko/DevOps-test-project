@@ -45,6 +45,7 @@ pipeline {
                                     ),
                                     sshTransfer(
                                         execCommand: "sudo cp /home/ubuntu/app/target/OMS.war /var/lib/tomcat9/webapps/"
+                                        execCommand: "chown tomcat:tomcat OMS.war"
                                     )
                                 ]
                             )
