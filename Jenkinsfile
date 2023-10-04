@@ -21,10 +21,10 @@ pipeline {
             steps {
                 script {
                     echo 'Deploying to s3....'
-                    //def gitCommitHash = checkout(scm).GIT_COMMIT
-                    //def fileName = "OMS_${gitCommitHash}.war"
-                    //sh "mv ${WORKSPACE}/target/OMS.war ${WORKSPACE}/target/${fileName}"
-                    //sh "aws s3 cp ${WORKSPACE}/target/${fileName} s3://my-bucket-with-jenkins/${fileName}"
+                    def gitCommitHash = checkout(scm).GIT_COMMIT
+                    def fileName = "OMS_${gitCommitHash}.war"
+                    sh "mv ${WORKSPACE}/target/OMS.war ${WORKSPACE}/target/${fileName}"
+                    sh "aws s3 cp ${WORKSPACE}/target/${fileName} s3://my-bucket-with-jenkins/${fileName}"
                 }
             }
         }
@@ -45,9 +45,6 @@ pipeline {
                                     ),
                                     sshTransfer(
                                         execCommand: "sudo cp /home/ubuntu/app/target/OMS.war /var/lib/tomcat9/webapps/"
-                                    ),
-                                    sshTransfer(
-                                        execCommand: "sudo chown tomcat:tomcat /var/lib/tomcat9/webapps/OMS.war"
                                     )
                                 ]
                             )
