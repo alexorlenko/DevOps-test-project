@@ -46,7 +46,7 @@ pipeline {
                                         sourceFiles: '**/*.war'
                                     ),
                                     sshTransfer(
-                                        execCommand: "sudo cp /home/ubuntu/app/target/*.war /var/lib/tomcat9/webapps/"
+                                        execCommand: "sudo cp /home/ubuntu/app/target/OMS.war /var/lib/tomcat9/webapps/"
                                     )
                                 ]
                             )
