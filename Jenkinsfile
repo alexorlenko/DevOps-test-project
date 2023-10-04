@@ -32,7 +32,6 @@ pipeline {
         stage('Deploy to AWS instance') {
             steps {
                 echo 'Deploying to the instance....'
-                echo 'step..'
                 script {
                     sshPublisher(
                         continueOnError: false, failOnError: true,
