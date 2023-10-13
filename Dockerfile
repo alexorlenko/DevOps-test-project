@@ -1,7 +1,12 @@
-FROM openjdk:8-jre-slim
-
-COPY target/OMS.war /app/OMS.war
+FROM maven:3.6-jdk-8
 
 WORKDIR /app
 
-CMD ["java", "-war", "OMS.war"]
+COPY target/OMS.war /app/OMS.war
+
+RUN mvn clean install
+
+ENV APP_PORT=8080
+ENV JAVA_OPTS=""
+
+CMD ["java", "-jar", "target/OMS.war"]
