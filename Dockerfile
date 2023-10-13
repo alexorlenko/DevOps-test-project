@@ -2,8 +2,7 @@ FROM maven:3.6-jdk-8
 
 WORKDIR /app
 
-COPY pom.xml /app/pom.xml
-COPY target/OMS.war /app/OMS.war
+COPY ./ /app
 
 RUN mvn clean install
 
