@@ -11,17 +11,22 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh '''
-                  docker rm $(docker ps -aq) 2>/dev/null || true
-                  docker images -f "dangling=true" -q | xargs -r docker rmi --force
-                  docker build -t oms-application:latest -t oms-application:$GIT_COMMIT_HASH .
-                '''
+                sh 'mvn clean install'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'docker run oms-application:latest mvn test'
+                sh 'mvn test'
+            }
+        }
+        stage('Create docker image') {
+            steps {
+                sh '''
+                  docker rm $(docker ps -aq) 2>/dev/null || true
+                  docker images -f "dangling=true" -q | xargs -r docker rmi --force
+                  docker build -t oms-application:latest -t oms-application:$GIT_COMMIT_HASH .
+                '''
             }
         }
         stage('Publish docker image to ECR') {
