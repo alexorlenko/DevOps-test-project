@@ -29,18 +29,18 @@ pipeline {
                 '''
             }
         }
-        // stage('Publish docker image to ECR') {
-        //     steps{
-        //         withCredentials([string(credentialsId: 'ECR_URI', variable: 'ECR_URI')]) {
-        //             sh '''
-        //                 aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin ${ECR_URI}
-        //                 docker tag oms-application:latest ${ECR_URI}/oms-application:latest
-        //                 docker tag oms-application:$GIT_COMMIT_HASH ${ECR_URI}/oms-application:$GIT_COMMIT_HASH
-        //                 docker push ${ECR_URI}/oms-application:latest
-        //                 docker push ${ECR_URI}/oms-application:$GIT_COMMIT_HASH
-        //               '''
-        //         }
-        //     }
-        // }
+        stage('Publish docker image to ECR') {
+            steps{
+                withCredentials([string(credentialsId: 'ECR_URI', variable: 'ECR_URI')]) {
+                    sh '''
+                        aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin ${ECR_URI}
+                        docker tag oms-application:latest ${ECR_URI}/oms-application:latest
+                        docker tag oms-application:$GIT_COMMIT_HASH ${ECR_URI}/oms-application:$GIT_COMMIT_HASH
+                        docker push ${ECR_URI}/oms-application:latest
+                        docker push ${ECR_URI}/oms-application:$GIT_COMMIT_HASH
+                      '''
+                }
+            }
+        }
     }
 }
